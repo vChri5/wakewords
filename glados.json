@@ -1,7 +1,7 @@
 {
   "type": "micro",
   "wake_word": "GLaDOS",
-  "author": "Chris Bocquet",
+  "author": "vChris",
   "website": "https://github.com/vChri5/wakewords",
   "model": "glados.tflite",
   "trained_languages": ["fr"],

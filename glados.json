@@ -1,0 +1,36 @@
+import json
+import os
+
+# Métriques finales de l'entraînement :
+# - Cutoff 0.01 : frr=0.0000, faph=0.000 → parfait
+# - Entraîné sur ta voix française avec 41 samples
+# - probability_cutoff à 0.5 = bon équilibre détection/faux positifs
+# - Si GLaDOS répond trop souvent par erreur : augmente à 0.7
+# - Si GLaDOS ne répondcp /config/www/glados.tflite /config/esphome/
+cp /config/www/glados.json /config/esphome/cp /config/www/glados.tflite /config/esphome/
+cp /config/www/glados.json /config/esphome/ pas assez : diminue à 0.3
+# - tensor_arena_size : augmente à 40000 si le modèle ne charge pas sur l'ESP32
+
+config = {
+    "type": "micro",
+    "wake_word": "glados",
+    "author": "Chris Bocquet",
+    "website": "",
+    "model": "glados.tflite",
+    "trained_languages": ["fr"],
+    "version": 2,
+    "micro": {
+        "probability_cutoff": 0.5,
+        "sliding_window_size": 5,
+        "feature_step_size": 10,
+        "tensor_arena_size": 32000,
+        "minimum_esphome_version": "2024.7.0"
+    }
+}
+
+json_dst = "/mnt/c/Users/chris/glados.json"
+with open(json_dst, 'w') as f:
+    json.dump(config, f, indent=2)
+
+print(f"✓ JSON créé : {json_dst}")
+print(json.dumps(config, indent=2))
